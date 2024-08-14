@@ -7,7 +7,7 @@
 
 ## Descripción
 
-Proyecto de Backend para ofrecer una API RESTful que maneje la autenticación de la aplicación de gestión de tareas y maneje las operaciones CRUD de gestión de tareas.
+Proyecto de Backend para ofrecer un servición monolítico que maneje la autenticación de una aplicación de gestión de tareas y maneje las operaciones CRUD de gestión de tareas, validando que se envie el token de autenticación válido para poder realizar las peticiones CRUD.
 
 ## Instalación
 
@@ -15,30 +15,15 @@ Proyecto de Backend para ofrecer una API RESTful que maneje la autenticación de
 npm install
 ```
 
-## Iniciar la base de datos con docker
+## Iniciar el monolito
 
 ```bash
-#descargar imagen mysql
-docker pull mysql
-
-#Crear contenedor docker
-docker run --name G7-Evaluacion-DB -p 3306:3306 -e MYSQL_ROOT_PASSWORD=12345 -d mysql
-
-#Entrar a MySQL desde docker
-docker exec -it G7-Evaluacion-DB mysql -p
-
-#Crear Database en MySQL
-create database GestionTareasDB
-```
-
-## Ejecutar la aplicación
-
-```bash
-npm run start:dev
+docker compose up --build
 ```
 
 ## Integrantes del Grupo
-* Erick Lasluisa
-* Francisco Quiroga
-* Ariel Rivadeneira
-* Augusto Salazar
+
+- Erick Lasluisa
+- Francisco Quiroga
+- Ariel Rivadeneira
+- Augusto Salazar

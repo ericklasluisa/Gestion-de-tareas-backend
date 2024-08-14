@@ -12,7 +12,7 @@ import { Usuario } from './usuario/entities/usuario.entity';
     TareasModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'db',
       port: 3306,
       username: 'root',
       password: '12345',

@@ -59,7 +59,7 @@ export class TareasService {
     }));
   }
 
-  async findOne(id: number): Promise<Tarea | null> {
+  async findOne(id: number): Promise<TareaResponseDto | null> {
     const tarea = await this.tareaRepository.findOne({
       where: { id },
       relations: ['usuario'],
@@ -69,21 +69,58 @@ export class TareasService {
         `Tarea con id: ${id} no se encontró en la base de datos`,
       );
     }
-    return tarea;
+    return {
+      id: tarea.id,
+      titulo: tarea.titulo,
+      descripcion: tarea.descripcion,
+      completado: tarea.completado,
+      usuarioId: tarea.usuario.id,
+    };
   }
 
   async update(
     id: number,
     updateTareaDto: UpdateTareaDto,
-  ): Promise<Tarea | null> {
-    await this.tareaRepository.update(id, updateTareaDto);
-    return this.tareaRepository.findOne({
+  ): Promise<TareaResponseDto | null> {
+    const tareaBusqueda = await this.tareaRepository.findOne({
       where: { id },
       relations: ['usuario'],
     });
+
+    if (!tareaBusqueda) {
+      throw new NotFoundException(
+        `Tarea con id: ${id} no se encontró en la base de datos`,
+      );
+    }
+
+    await this.tareaRepository.update(id, updateTareaDto);
+    const tarea = await this.tareaRepository.findOne({
+      where: { id },
+      relations: ['usuario'],
+    });
+    return {
+      id: tarea.id,
+      titulo: tarea.titulo,
+      descripcion: tarea.descripcion,
+      completado: tarea.completado,
+      usuarioId: tarea.usuario.id,
+    };
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: number): Promise<string> {
+    const tareaBusqueda = await this.tareaRepository.findOne({
+      where: { id },
+      relations: ['usuario'],
+    });
+
+    if (!tareaBusqueda) {
+      throw new NotFoundException(
+        `Tarea con id: ${id} no se encontró en la base de datos`,
+      );
+    }
+
     await this.tareaRepository.delete(id);
+
+    return `Tarea con id: ${id} eliminada correctamente`;
   }
 }
