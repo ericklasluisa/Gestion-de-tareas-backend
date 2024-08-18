@@ -9,6 +9,11 @@
 
 Proyecto de Backend para ofrecer un servición monolítico que maneje la autenticación de una aplicación de gestión de tareas y maneje las operaciones CRUD de gestión de tareas, validando que se envie el token de autenticación válido para poder realizar las peticiones CRUD.
 
+## Clonar el repositorio
+```bash
+git clone https://github.com/ericklasluisa/g7-evaluacion-backend.git
+```
+
 ## Instalación
 
 ```bash
