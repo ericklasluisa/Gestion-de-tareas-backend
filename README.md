@@ -9,9 +9,22 @@
 
 Proyecto de Backend para ofrecer un servicio monolítico que maneje la autenticación de una aplicación de gestión de tareas y maneje las operaciones CRUD de gestión de tareas, validando que se envie el token de autenticación válido para poder realizar las peticiones CRUD.
 
-## Clonar el repositorio
+## Instalaciones Necesarias
+
+- [NodeJS](https://nodejs.org/en/download/package-manager/current)
+- [NestJS](https://docs.nestjs.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+## Instalación de NestJS
+
 ```bash
-git clone https://github.com/ericklasluisa/g7-evaluacion-backend.git
+npm i -g @nestjs/cli
+```
+
+## Clonar el repositorio
+
+```bash
+git clone https://github.com/ericklasluisa/Gestion-de-tareas-backend.git
 ```
 
 ## Instalación
@@ -20,7 +33,7 @@ git clone https://github.com/ericklasluisa/g7-evaluacion-backend.git
 npm install
 ```
 
-## Iniciar el monolito
+## Iniciar el Proyecto
 
 ```bash
 docker compose up --build
