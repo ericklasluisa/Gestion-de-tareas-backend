@@ -1,27 +1,35 @@
-name: Build
+name: SonarQube Analysis
 
 on:
   push:
     branches:
-      - master
-
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
-    name: Build and analyze
-    runs-on: windows-latest
-    
+  sonarqube:
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - uses: SonarSource/sonarqube-scan-action@v4
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      # If you wish to fail your job when the Quality Gate is red, uncomment the
-      # following lines. This would typically be used to fail a deployment.
-      # - uses: SonarSource/sonarqube-quality-gate-action@v1
-      #   timeout-minutes: 5
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16 # Usa la versión que necesitas
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run SonarQube Scanner
+      env:
+        SONAR_HOST_URL: http://host.docker.internal:9000
+        SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        npx sonarqube-scanner \
+          -Dsonar.sources=src \
+          -Dsonar.host.url=$SONAR_HOST_URL \
+          -Dsonar.login=$SONAR_LOGIN
