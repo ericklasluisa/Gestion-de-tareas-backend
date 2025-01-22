@@ -11,9 +11,9 @@ import { TareaResponseDto } from './dto/response-tarea.dto';
 export class TareasService {
   constructor(
     @InjectRepository(Tarea)
-    private tareaRepository: Repository<Tarea>,
+    private readonly tareaRepository: Repository<Tarea>,
     @InjectRepository(Usuario)
-    private usuarioRepository: Repository<Usuario>,
+    private readonly usuarioRepository: Repository<Usuario>,
   ) {}
 
   async create(createTareaDto: CreateTareaDto): Promise<TareaResponseDto> {
