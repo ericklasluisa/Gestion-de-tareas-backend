@@ -21,7 +21,7 @@ Proyecto de Backend para ofrecer un servicio monolítico que maneje la autentica
 npm i -g @nestjs/cli
 ```
 
-## Clonar repositorio
+## Clonar el repositorio
 
 ```bash
 git clone https://github.com/ericklasluisa/Gestion-de-tareas-backend.git
