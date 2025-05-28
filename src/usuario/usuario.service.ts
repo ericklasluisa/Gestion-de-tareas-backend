@@ -14,8 +14,8 @@ import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 export class UsuarioService {
   constructor(
     @InjectRepository(Usuario)
-    private usuariosRepository: Repository<Usuario>,
-    private jwtService: JwtService,
+    private readonly usuariosRepository: Repository<Usuario>,
+    private readonly jwtService: JwtService,
   ) {}
 
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
